@@ -83,13 +83,19 @@ jobs:
     steps:
       - name: Clone the repository
         uses: actions/checkout@v3
+        
+      - name: Extract metadata (tags, labels) for Podman
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Buildah Action
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ${{ env.IMAGE_NAME }}
-          tags: latest ${{ github.sha }}
+          tags: ${{ steps.docker-metadata.outputs.tags }}
+          labels: ${{ steps.docker-metadata.outputs.labels }}
           containerfiles: |
             ./Dockerfile
       - name: Log in to the GitHub Container registry
