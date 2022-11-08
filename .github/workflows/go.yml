@@ -37,7 +37,8 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-  Build-and-Push-Docker-Image:
+  docker:
+    needs: build
     runs-on: ubuntu-latest
     name: Docker Build, Tag, Push
     permissions:
@@ -68,3 +69,17 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy to production
+    
+    steps:
+      - name: Deploy to Production
+        run: |
+          printf ${SSH_KEY} > .id_ed25519 && \
+          ssh -i .id_ed25519 ${HOST} deploy.sh
+        env: |
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          HOST: kotter.wmulder.nl
