@@ -86,7 +86,7 @@ jobs:
         
       - name: Extract metadata (tags, labels) for Podman
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.IMAGE_NAME }}
           tags: |
@@ -104,8 +104,8 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ steps.docker-metadata.outputs.tags }}
-          labels: ${{ steps.docker-metadata.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           containerfiles: |
             ./Dockerfile
       - name: Log in to the GitHub Container registry
