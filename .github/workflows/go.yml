@@ -76,6 +76,8 @@ jobs:
     name: Deploy to production
     
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Deploy to Production
         run: |
           printf "%s\n" "$SSH_KEY" > .id_ed25519
