@@ -132,7 +132,7 @@ func getAuth(w http.ResponseWriter, r *http.Request, msg Msg) error {
 	// fmt.Println("username: ", user)
 	// fmt.Println("password: ", pass)
 	if !ok || !checkUsernameAndPassword(user, pass, msg) {
-		w.Header().Set("WWW-Authenticate", `Basic realm="Please enter your username and password for this site (username=vr)"`)
+		w.Header().Set("WWW-Authenticate", `Basic realm="code = password"`)
 		w.WriteHeader(401)
 		w.Write([]byte("Unauthorised.\n"))
 		return errors.New("unauthorised")
@@ -141,7 +141,7 @@ func getAuth(w http.ResponseWriter, r *http.Request, msg Msg) error {
 }
 
 func checkUsernameAndPassword(username, password string, msg Msg) bool {
-	return username == "vr" && password == msg.Pass
+	return password == msg.Pass
 }
 
 func showAttachment(w http.ResponseWriter, req *http.Request) {
