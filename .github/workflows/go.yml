@@ -80,8 +80,9 @@ jobs:
       
       - name: Deploy to Production
         run: |
-          printf "%s\n" "$SSH_KEY" > .id_ed25519
-          chmod 600 .id_ed25519
+          printf "%s\n" "$SSH_KEY" > .id_ed25519 && \
+          chmod 600 .id_ed25519 && \
+          wc -l .id_ed25519 && \
           ./deploy.sh $HOST .id_ed25519
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
