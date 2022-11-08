@@ -15,5 +15,5 @@ cd ~/deploy/secure-send
 docker stop $CONTAINER_NAME
 docker rm $CONTAINER_NAME
 docker pull $IMAGE
-docker run --name $CONTAINER_NAME -v /app/cache -p 9999:9999 -d $IMAGE
+docker run --name $CONTAINER_NAME -v /app/cache:z -p 9999:9999 -d $IMAGE
 "
