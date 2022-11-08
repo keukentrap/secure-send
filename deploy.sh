@@ -1,12 +1,14 @@
 #!/bin/bash
 
+set -e
+
 HOST=$1
 ID=$2
 
 IMAGE='ghcr.io/keukentrap/secure-send:main'
 CONTAINER_NAME='secure-send'
 
-ssh -i $ID -p 22000 $HOST "
+ssh -o StrictHostKeyChecking=no -i $ID -p 22000 $HOST "
 mkdir -p ~/deploy/secure-send
 cd ~/deploy/secure-send
 
