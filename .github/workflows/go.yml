@@ -72,16 +72,13 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         
   deploy:
-    needs: docker
     runs-on: ubuntu-latest
     name: Deploy to production
     
     steps:
       - name: Deploy to Production
         run: |
-          cat > .id_ed25519 << EOF
-          ${SSH_KEY} 
-          EOF
+          printf "%s\n" "$SSH_KEY" > .id_ed25519
           ssh -i .id_ed25519 ${HOST} deploy.sh
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
