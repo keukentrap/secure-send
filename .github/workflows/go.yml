@@ -109,7 +109,7 @@ jobs:
         id: push-to-ghcr
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: ${{ steps.build-image.outputs.image }}
+          image: ${{ env.IMAGE_NAME }}
           tags: ${{ steps.build-image.outputs.tags }}
           registry: ${{ env.REGISTRY }}
 
