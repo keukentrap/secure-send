@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --from=0 /build/app .
 COPY templates/ ./templates/
 COPY static/ ./static/
-RUN chown -R 1000:1000
+RUN chown -R 1000:1000 .
 USER 1000:1000
 
 ENTRYPOINT ./app
