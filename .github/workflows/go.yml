@@ -94,7 +94,7 @@ jobs:
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
-#           image: ${{ env.IMAGE_NAME }}
+          image: ${{ env.IMAGE_NAME }}
           tags: ${{ steps.docker-metadata.outputs.tags }}
           labels: ${{ steps.docker-metadata.outputs.labels }}
           containerfiles: |
