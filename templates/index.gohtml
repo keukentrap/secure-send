@@ -1,0 +1,12 @@
+{{template "base" . }}
+{{ define "content" }}
+<h1>Overview (admin only)</h1>
+<a href="/speak" class="btn btn-outline-primary" ><button>Speak</button></a>
+<hr/>
+<ul class="list-group">
+  {{ range $_, $i := . }}
+    <li> <a href='/listen/{{ $i }}' class="list-group-item list-group-item-action">{{ $i }}</a></li>
+  {{ end }}
+</ul>
+{{end}}
+

@@ -1,0 +1,11 @@
+
+
+.width {
+	width: 100%;
+	display: block;
+}
+
+.right {
+	float: right;
+	display: block;
+}

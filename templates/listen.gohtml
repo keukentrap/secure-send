@@ -1,0 +1,9 @@
+{{template "base" . }}
+
+{{define "content" }}
+<h1>{{ .Subject }}</h1>
+<hr/>
+<p>{{ .Body }}</p>
+<a href="/attach/{{ .ID }}" class="btn btn-outline-primary" ><button>Attachment</button></a>
+{{end}}
+

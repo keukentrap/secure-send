@@ -1,0 +1,14 @@
+{{template "base" . }}
+{{ define "content" }}
+<h1>Speak out</h1>
+<a href="/" class="btn btn-outline-primary" ><button>Go back</button></a>
+<hr/>
+<form method="post" action="/say" enctype="multipart/form-data">
+<input type="text" class="width" name="recipient" value="w.mulder@student.science.ru.nl" placeholder="Subject"/>
+<input type="text" class="width" name="subject" placeholder="Subject"/>
+<textarea name="body" class="width" rows="8" placeholder="What do you want to say?"></textarea>
+<input accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" name="attachment" type="file" />
+<input type="submit" class="right" value="Tell them" />
+</form>
+{{end}}
+
