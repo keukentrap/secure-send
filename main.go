@@ -81,6 +81,7 @@ func sendMail(to []string, subject string, body string) {
 			body)
 
 	auth := smtp.PlainAuth("", usr, password, host)
+	log.Printf("%v", auth)
 
 	err := smtp.SendMail(addr, auth, from, to, msg)
 	if err != nil {

@@ -12,7 +12,7 @@ ssh -o StrictHostKeyChecking=no -i $ID -p 22000 $HOST "
 mkdir -p ~/deploy/secure-send/
 cd ~/deploy/secure-send
 
-mkdir /tmp/cache
+mkdir -p /tmp/cache
 
 docker stop $CONTAINER_NAME
 docker rm $CONTAINER_NAME
