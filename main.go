@@ -192,7 +192,7 @@ func sendMsg(w http.ResponseWriter, req *http.Request) {
 	bs, _ := io.ReadAll(f)
 	attachment := base64.StdEncoding.EncodeToString(bs)
 	id := uuid.New().String()
-	pass := fmt.Sprintf("%5d", rand.Intn(99999))
+	pass := fmt.Sprintf("%05d", rand.Intn(99999))
 	mq <- Msg{ID: id, Recipient: recipient, Subject: subject, Body: body, Attachment: attachment, Pass: pass}
 	http.Redirect(w, req, "/", http.StatusFound)
 }
