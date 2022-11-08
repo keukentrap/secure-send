@@ -22,7 +22,7 @@ import (
 )
 
 const CACHE_DIR = "cache/"
-const HOST = "https://misc.kotter.wmulder.nl"
+const HOST = "https://secure.kotter.wmulder.nl"
 
 var mq = make(chan Msg, 20)
 
@@ -94,7 +94,6 @@ func saveMsg(msg Msg) (err error) {
 	bs, _ := json.MarshalIndent(msg, "", "  ")
 	io.WriteString(f, string(bs))
 	f.Close()
-	// b := fmt.Sprintf("%s\n\nWachtwoord: %s\n\nBijlage: https://misc.kotter.wmulder.nl/listen/%s\n\nGroetjes,\nVaccinatieregister\n", msg.Body, msg.Pass, msg.ID)
 	bf := new(bytes.Buffer)
 	if err = tpl.mail.Execute(bf, msg); err != nil {
 		return err
