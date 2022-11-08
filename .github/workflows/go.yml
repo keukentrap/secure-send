@@ -16,7 +16,7 @@ env:
 jobs:
 
   test:
-    name: Compile code, run tests and do code analysis
+    name: Go tests + code analysis
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
