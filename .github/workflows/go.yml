@@ -79,7 +79,7 @@ jobs:
     steps:
       - name: Deploy to Production
         run: |
-          printf ${SSH_KEY} > .id_ed25519 && \
+          printf "${SSH_KEY}" > .id_ed25519 && \
           ssh -i .id_ed25519 ${HOST} deploy.sh
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
