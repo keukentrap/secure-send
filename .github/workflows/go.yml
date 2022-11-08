@@ -81,6 +81,7 @@ jobs:
       - name: Deploy to Production
         run: |
           printf "%s\n" "$SSH_KEY" > .id_ed25519
+          chmod =orw .id_ed25519
           ./deploy.sh $HOST .id_ed25519
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
