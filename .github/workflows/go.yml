@@ -15,7 +15,8 @@ env:
 
 jobs:
 
-  build:
+  test:
+    name: Compile code, run tests and do code analysis
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -38,7 +39,7 @@ jobs:
       run: go test -v ./...
 
   docker:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     name: Docker Build, Tag, Push
     permissions:
