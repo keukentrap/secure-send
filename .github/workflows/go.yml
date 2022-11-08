@@ -71,7 +71,7 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
       env:
-        SMTP_PASS: ${{ secrets.SMTP_PASS }
+        SMTP_PASS: ${{ secrets.SMTP_PASS }}
         
   deploy:
     needs: docker
