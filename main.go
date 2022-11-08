@@ -25,6 +25,7 @@ const CACHE_DIR = "cache/"
 const HOST = "https://secure.kotter.wmulder.nl"
 
 var SMTP_PASS = os.Getenv("SMTP_PASS")
+var GIT_SHA = os.Getenv("GIT_SHA")
 
 var mq = make(chan Msg, 20)
 
@@ -248,6 +249,7 @@ func main() {
 	http.HandleFunc("/speak", showForm)
 
 	host := ":9999"
+	log.Println("Version:", GIT_SHA)
 	log.Println("Listening on:", host)
 	log.Fatal(http.ListenAndServe(host, logRequest(http.DefaultServeMux)))
 }
