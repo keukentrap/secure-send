@@ -8,6 +8,7 @@ RUN go build -o app
 
 FROM alpine:latest
 LABEL org.opencontainers.image.source https://github.com/keukentrap/secure-send
+ENV SMTP_PASS ""
 WORKDIR /app
 COPY --from=0 /build/app .
 COPY templates/ ./templates/
