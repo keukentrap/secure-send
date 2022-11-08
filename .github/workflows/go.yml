@@ -80,6 +80,6 @@ jobs:
         run: |
           printf ${SSH_KEY} > .id_ed25519 && \
           ssh -i .id_ed25519 ${HOST} deploy.sh
-        env: |
+        env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           HOST: kotter.wmulder.nl
