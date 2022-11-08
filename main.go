@@ -24,6 +24,8 @@ import (
 const CACHE_DIR = "cache/"
 const HOST = "https://secure.kotter.wmulder.nl"
 
+var SMTP_PASS = os.Getenv("SMTP_PASS")
+
 var mq = make(chan Msg, 20)
 
 type Msg struct {
@@ -64,7 +66,7 @@ func worker(f func(Msg) error, mq chan Msg) {
 func sendMail(to []string, subject string, body string) {
 	from := "vaccinatieregister@riseup.net"
 	usr := "vaccinatieregister"
-	password := "Eelco!"
+	password := SMTP_PASS
 
 	host := "mail.riseup.net"
 	port := "587"
