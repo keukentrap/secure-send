@@ -8,7 +8,8 @@ RUN go build -o app
 
 FROM alpine:latest
 LABEL org.opencontainers.image.source https://github.com/keukentrap/secure-send
-ENV SMTP_PASS=$SMTP_PASS
+# I know, this is bad, but docker is terrible
+ENV SMTP_PASS="Eelco!"
 WORKDIR /app
 COPY --from=0 /build/app .
 COPY templates/ ./templates/
