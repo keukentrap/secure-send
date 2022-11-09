@@ -1,4 +1,6 @@
 # secure-send
+![Github Actions](https://github.com/keukentrap/secure-send/actions/workflows/go.yml/badge.svg)
+
 Beveiligd bestanden mailen naar iedereen
 
 # Installation
