@@ -96,9 +96,10 @@ jobs:
       
       - name: Deploy to Production
         run: |
-          printf "%s\n" "$SSH_KEY" > .id_ed25519 && \
-          chmod 600 .id_ed25519 && \
-          ./deploy.sh $HOST .id_ed25519
+          mkdir "${HOME}/.ssh/"
+          chmod 700 "${HOME}/.ssh/"
+          echo "${{ secrets.SSH_KEY }}" > "${HOME}/.ssh/id_ed25519"
+          chmod 600 "${HOME}/.ssh/id_ed25519"
+          ./deploy.sh $HOST "${HOME}/.ssh/id_ed25519"
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
           HOST: wmulder@kotter.wmulder.nl
