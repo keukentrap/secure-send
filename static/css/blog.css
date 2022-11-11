@@ -1,5 +1,7 @@
 
-
+body {
+	background-color: purple;
+}
 .width {
 	width: 100%;
 	display: block;
