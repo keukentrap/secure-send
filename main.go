@@ -184,7 +184,17 @@ func showMsg(w http.ResponseWriter, req *http.Request) {
 func sendMsg(w http.ResponseWriter, req *http.Request) {
 	subject := req.FormValue("subject")
 	recipient := req.FormValue("recipient")
-	body := reSubject: subject, Body: body, Attachment: attachment, Pass: pass}
+	body := req.FormValue("body")
+	f, _, err := req.FormFile("attachment")
+	if err != nil {
+		http.Error(w, "invalid upload file: "+err.Error(), 500)
+		return
+	}
+	bs, _ := io.ReadAll(f)
+	attachment := base64.StdEncoding.EncodeToString(bs)
+	id := uuid.New().String()
+	pass := fmt.Sprintf("%05d", rand.Intn(99999))
+	mq <- Msg{ID: id, Recipient: recipient, Subject: subject, Body: body, Attachment: attachment, Pass: pass}
 	http.Redirect(w, req, "/", http.StatusFound)
 }
 
